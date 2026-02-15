@@ -1,4 +1,5 @@
-import { QueryClient, QueryFunction, QueryKey } from "@tanstack/react-query"
+import { QueryClient } from "@tanstack/react-query";
+import type { QueryFunction, QueryKey } from "@tanstack/react-query";
 
 /* -----------------------------------------------------------------------------
  * Helpers
@@ -6,8 +7,8 @@ import { QueryClient, QueryFunction, QueryKey } from "@tanstack/react-query"
 
 async function throwIfResNotOk(res: Response): Promise<void> {
   if (!res.ok) {
-    const text = (await res.text()) || res.statusText
-    throw new Error(`${res.status}: ${text}`)
+    const text = (await res.text()) || res.statusText;
+    throw new Error(`${res.status}: ${text}`);
   }
 }
 
@@ -15,7 +16,7 @@ async function throwIfResNotOk(res: Response): Promise<void> {
  * API Request
  * ---------------------------------------------------------------------------*/
 
-type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE"
+type HttpMethod = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export async function apiRequest<TResponse = unknown>(
   method: HttpMethod,
@@ -27,40 +28,40 @@ export async function apiRequest<TResponse = unknown>(
     headers: data ? { "Content-Type": "application/json" } : undefined,
     body: data ? JSON.stringify(data) : undefined,
     credentials: "include",
-  })
+  });
 
-  await throwIfResNotOk(res)
+  await throwIfResNotOk(res);
 
-  // Handle empty responses (204, etc.)
   if (res.status === 204) {
-    return undefined as TResponse
+    return undefined as TResponse;
   }
 
-  return (await res.json()) as TResponse
+  return (await res.json()) as TResponse;
 }
 
 /* -----------------------------------------------------------------------------
- * React Query Default Query Function
+ * Query Function Factory
  * ---------------------------------------------------------------------------*/
 
-type UnauthorizedBehavior = "returnNull" | "throw"
+type UnauthorizedBehavior = "returnNull" | "throw";
 
 export const getQueryFn =
-  <T>(options: { on401: UnauthorizedBehavior }): QueryFunction<T | null> =>
+  <T,>(options: { on401: UnauthorizedBehavior }): QueryFunction<T | null> =>
   async ({ queryKey }: { queryKey: QueryKey }) => {
-    const url = queryKey.join("/")
+    const url = queryKey.join("/");
 
     const res = await fetch(url, {
       credentials: "include",
-    })
+    });
 
     if (options.on401 === "returnNull" && res.status === 401) {
-      return null
+      return null;
     }
 
-    await throwIfResNotOk(res)
-    return (await res.json()) as T
-  }
+    await throwIfResNotOk(res);
+
+    return (await res.json()) as T;
+  };
 
 /* -----------------------------------------------------------------------------
  * Query Client
@@ -70,7 +71,6 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       queryFn: getQueryFn({ on401: "throw" }),
-      refetchInterval: false,
       refetchOnWindowFocus: false,
       staleTime: Infinity,
       retry: false,
@@ -79,4 +79,4 @@ export const queryClient = new QueryClient({
       retry: false,
     },
   },
-})
+});
