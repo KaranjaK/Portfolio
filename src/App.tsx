@@ -15,7 +15,14 @@ export default function App() {
   useScrollSpy(SECTION_IDS);
   return (
     <>
+      <a href="#main" className="skip-link">
+        Skip to main content
+      </a>
       <Navbar />
+
+      <main id="main">
+        
+      </main>
     </>
   );
 }
