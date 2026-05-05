@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { useTheme } from "./../hooks/useTheme";
+
 const links = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
@@ -8,6 +11,24 @@ const links = [
 ];
 
 export function Navbar() {
+  const { theme, toggle } = useTheme();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -27,7 +48,7 @@ export function Navbar() {
         >
           <span
             aria-hidden
-            className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-400 text-white shadow-lg shadow-brand-500/30 transition-transform group-hover:rotate-6"
+            className="grid h-9 w-9 place-items-center rounded-xl bg-linear-to-br from-brand-500 to-cyan-400 text-white shadow-lg shadow-brand-500/30 transition-transform group-hover:rotate-6"
           >
             KK
           </span>
@@ -45,7 +66,7 @@ export function Navbar() {
                 {l.label}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-brand-500 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100 group-data-[active=true]:scale-x-100"
+                  className="pointer-events-none absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-linear-to-r from-brand-500 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100 group-data-[active=true]:scale-x-100"
                 />
               </a>
             </li>
@@ -94,7 +115,7 @@ export function Navbar() {
 
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 hover:shadow-brand-600/50 hover:-translate-y-0.5 transition"
+            className="hidden md:inline-flex items-center gap-2 rounded-full bg-linear-to-r from-brand-600 to-brand-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-600/30 hover:shadow-brand-600/50 hover:-translate-y-0.5 transition"
           >
             Hire Me
           </a>
@@ -150,7 +171,7 @@ export function Navbar() {
             <a
               href="#contact"
               onClick={() => setOpen(false)}
-              className="mt-2 block rounded-lg bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-3 text-center font-semibold text-white"
+              className="mt-2 block rounded-lg bg-linear-to-r from-brand-600 to-brand-500 px-4 py-3 text-center font-semibold text-white"
             >
               Hire Me
             </a>
