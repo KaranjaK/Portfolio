@@ -1,7 +1,9 @@
-const App = () => {
+import { Navbar } from './components/Navbar'
+
+export default function App() {
   return (
-    <div>This is the beginning of my impact</div>
+    <>
+      <Navbar />
+    </>
   )
 }
-
-export default App
