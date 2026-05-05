@@ -21,7 +21,7 @@ export function Navbar() {
               {l.label}
               <span
                 aria-hidden
-                className="pointer-events-none absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-gradient-to-r from-brand-500 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100 group-data-[active=true]:scale-x-100"
+                className="pointer-events-none absolute left-3 right-3 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-linear-to-r from-brand-500 to-cyan-400 transition-transform duration-300 group-hover:scale-x-100 group-data-[active=true]:scale-x-100"
               />
             </a>
           </li>
