@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex items-center gap-3">
           <span
             aria-hidden
-            className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-cyan-400 text-white font-bold"
+            className="grid h-10 w-10 place-items-center rounded-xl bg-linear-to-br from-brand-500 to-cyan-400 text-white font-bold"
           >
             KK
           </span>
@@ -37,7 +37,7 @@ export function ScrollTop() {
     <a
       href="#home"
       aria-label="Back to top"
-      className="fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-brand-600 to-brand-500 text-white shadow-xl shadow-brand-600/40 hover:-translate-y-1 transition opacity-80 hover:opacity-100"
+      className="fixed bottom-6 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-linear-to-br from-brand-600 to-brand-500 text-white shadow-xl shadow-brand-600/40 hover:-translate-y-1 transition opacity-80 hover:opacity-100"
     >
       <svg
         width="20"
