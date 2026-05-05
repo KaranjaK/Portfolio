@@ -1,4 +1,5 @@
 import { Navbar } from "./components/Navbar";
+import { Hero } from "./components/Hero";
 import { useReveal, useScrollSpy } from "./hooks/useReveal";
 
 const SECTION_IDS = [
@@ -21,7 +22,7 @@ export default function App() {
       <Navbar />
 
       <main id="main">
-        
+        <Hero />
       </main>
     </>
   );
