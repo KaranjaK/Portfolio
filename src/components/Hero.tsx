@@ -146,7 +146,7 @@ export function Hero() {
           </div>
 
           {/* Right side — interactive code card */}
-          <div className="relative">
+          <div className="relative w-screen mx-auto">
             <div className="absolute inset-0 -z-10 rounded-3xl bg-linear-to-br from-brand-500 to-cyan-400 opacity-20 blur-2xl" />
             <div className="rounded-3xl border border-slate-200/60 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur shadow-2xl overflow-hidden animate-float">
               <div className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 px-4 py-3">
