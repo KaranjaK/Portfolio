@@ -21,9 +21,11 @@ function useTypewriter(words: string[], speed = 80, pause = 1400) {
       return () => clearTimeout(t);
     }
     if (del && text === "") {
-      setDel(false);
-      setI((p) => p + 1);
-      return;
+      const t = setTimeout(() => {
+        setDel(false);
+        setI((p) => p + 1);
+      }, 0);
+      return () => clearTimeout(t);
     }
     const t = setTimeout(
       () => {
