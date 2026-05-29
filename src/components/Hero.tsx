@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 import { profile, stats } from "../data/portfolio";
 
 const ROLES = [
-  "Full-Stack Developer",
-  "React Specialist",
-  "Django Engineer",
-  "Accessibility Advocate",
-  "Mentor & Teacher",
+  "Full-Stack Software Engineer",
+  "Digital Accessibility Advocate",
+  "Technical Mentor",
 ];
 
-function useTypewriter(words: string[], speed = 80, pause = 1400) {
+function useTypewriter(words: string[], speed = 100, pause = 1400) {
   const [text, setText] = useState("");
   const [i, setI] = useState(0);
   const [del, setDel] = useState(false);
