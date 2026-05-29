@@ -199,7 +199,7 @@ export const projects: Project[] = [
     tech: ["React", "TypeScript", "Tailwind", "Vite"],
     accent: "from-purple-500 to-pink-500",
     emoji: "🌐",
-    link: "https://github.com/KaranjaK",
+    link: "https://portfolio-rosy-tau-45.vercel.app/",
   },
   {
     title: "Farmer Lifeline Learning System",
